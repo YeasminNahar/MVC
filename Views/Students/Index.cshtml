@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Practice_one.Models.Student>
+@{
+    ViewBag.Title = "Index";
+}
+@foreach (var student in Model)
+{
+<h2>Index</h2>
+<div>
+    <img src="@student.Picture" width="50" />
+    <label><b>Student:</b>@Html.DisplayFor(s => student.StudentName)</label>
+    <label><b>Age:</b>@Html.DisplayFor(s => student.Age)</label>
+    <label><b>DOB:</b>@Html.DisplayFor(s => student.DateOfBirth)</label>
+    <label><b>ISAdmit:</b>@Html.DisplayFor(s => student.IsAddmitted)</label>
+    </div>
+<div>
+    @*<a href="@Url.Action("Edit", "Students", new {id=student.StudentId})" id="btnEdit" )>Edit</a>*@
+    <a href="@Url.Action("Delete", "Students", new {id=student.StudentId})" id="btnDelete" )>Delete</a>
+</div>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Subject Id</th>
+                    <th>Subject NAme</th>
+                    </tr>
+                </thead>
+            <tbody>
+                @foreach (var item in student.Addmissions)
+                { 
+                <tr>
+                    <td>@Html.DisplayFor(s => item.Subject.SubjectId)</td>
+                    <td>@Html.DisplayFor(s => item.Subject.SubjectName)</td>
+                </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    }
